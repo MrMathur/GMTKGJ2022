@@ -36,7 +36,7 @@ public class MarkTile : MonoBehaviour
         }
 
         if (allCorrect) {
-            SceneManager.LoadScene("Level 1");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
 
 
