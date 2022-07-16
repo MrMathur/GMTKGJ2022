@@ -46,8 +46,6 @@ public class MarkTile : MonoBehaviour
             } 
             PlayerStats.Levels[SceneManager.GetActiveScene().buildIndex - 1] = new LevelDetails(PlayerStats.CurrentLevel -1, stars, numMoves, true, true);
             PlayerStats.Levels[SceneManager.GetActiveScene().buildIndex] = new LevelDetails(PlayerStats.CurrentLevel, 0, 0, true, false);
-
-
         }
 
 
