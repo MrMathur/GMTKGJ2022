@@ -8,12 +8,6 @@ public class CubeMovement : MonoBehaviour
 
     [SerializeField] private float rollSpeed = 3;
     [SerializeField] private float jumpSpeed = 3;
-    [SerializeField] private GameObject face1;
-    [SerializeField] private GameObject face2;
-    [SerializeField] private GameObject face3;
-    [SerializeField] private GameObject face4;
-    [SerializeField] private GameObject face5;
-    [SerializeField] private GameObject face6;
     [SerializeField] private GameObject cube;
 
     private Quaternion face1quat;

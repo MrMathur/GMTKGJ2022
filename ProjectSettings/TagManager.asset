@@ -12,6 +12,7 @@ TagManager:
   - tile4
   - tile5
   - tile6
+  - generic_tag
   layers:
   - Default
   - TransparentFX
