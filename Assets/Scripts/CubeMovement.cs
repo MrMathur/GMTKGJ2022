@@ -15,7 +15,8 @@ public class CubeMovement : MonoBehaviour
     private bool _isMoving;
 
     private Vector3 lastMove;
-
+    public GameObject environment;
+    private bool isReset = false;
 
     int getCorrectFaceValue() {
         
@@ -46,28 +47,75 @@ public class CubeMovement : MonoBehaviour
         return 1 - Vector3.Dot(vecA, vecB) < 0.01f;
     }   
 
+    void Start() {
+        environment = GameObject.FindWithTag("environment");
+    }
+
     void Update()
     {
 
-        if (_isMoving) return;
+        if (_isMoving || isReset) return;
 
-        void InitiateRoll(Vector3 dir) {
-            lastMove = dir;
-            Vector3 anchor = transform.position + (Vector3.down + dir) * 5f;
-            Vector3 axis = Vector3.Cross(Vector3.up, dir);
+       
 
-            StartCoroutine(Roll(anchor, axis));
+        if (Input.GetKeyDown(KeyCode.A)) {
+            InitiateRoll(Vector3.left);
         }
+        else if (Input.GetKeyDown(KeyCode.D)) {
+            InitiateRoll(Vector3.right);
+        }
+        else if (Input.GetKeyDown(KeyCode.W)) {
+            InitiateRoll(Vector3.forward);
+        }
+        else if (Input.GetKeyDown(KeyCode.S)) {
+            InitiateRoll(Vector3.back);
+        }
+        else if (Input.GetKeyDown(KeyCode.R)){
+            StartCoroutine(Reset());
+        }
+    }
 
-        if (Input.GetKeyDown(KeyCode.A)) InitiateRoll(Vector3.left);
-        if (Input.GetKeyDown(KeyCode.D)) InitiateRoll(Vector3.right);
-        if (Input.GetKeyDown(KeyCode.W)) InitiateRoll(Vector3.forward);
-        if (Input.GetKeyDown(KeyCode.S)) InitiateRoll(Vector3.back);
+
+     void InitiateRoll(Vector3 dir, bool noEnv = false) {
+        if (!noEnv) {
+            Move newMove = new Move(dir, "Roll");
+            environment.GetComponent<Environment>().moveSet.Add(newMove);
+            environment.GetComponent<Environment>().moveCounter +=1;
+        }
+        lastMove = dir;
+        Vector3 anchor = transform.position + (Vector3.down + dir) * 5f;
+        Vector3 axis = Vector3.Cross(Vector3.up, dir);
+
+        StartCoroutine(Roll(anchor, axis));
+        Debug.Log(environment.GetComponent<Environment>().moveCounter);
+     }
+
+    IEnumerator Reset () {
+        isReset = true;
+        environment.GetComponent<Environment>().moveSet.Reverse();
+        foreach (var move in environment.GetComponent<Environment>().moveSet) {
+            if (move.moveType == "Jump") {
+                InitiateJump(-move.moveDir, true);
+                yield return new WaitForSeconds(1f);
+
+            } else{
+                InitiateRoll(-move.moveDir, true);
+                yield return new WaitForSeconds(0.4f);
+
+            }
+        }
+        environment.GetComponent<Environment>().moveSet = new List<Move>();
+        environment.GetComponent<Environment>().moveCounter = 0;
+        isReset = false;
     }
 
 
 
-    private void InitiateJump(Vector3 dir) {
+    private void InitiateJump(Vector3 dir, bool noEnv = false) {
+        if (!noEnv) {
+            Move newMove = new Move(dir, "Jump");
+            environment.GetComponent<Environment>().moveSet.Add(newMove);
+        }
         Vector3 anchor = transform.position + (dir * 10f);
         Vector3 axis = Vector3.Cross(Vector3.up, dir);
 
@@ -119,56 +167,57 @@ public class CubeMovement : MonoBehaviour
     }
 
     private void markFaceRed(Collider other) {
-        Debug.Log(other.gameObject.GetComponent<MarkTile>());
         other.gameObject.GetComponent<MarkTile>().triggerColorRed();
     }
 
 
     private void OnTriggerEnter(Collider other) {
-        if (other.tag == "Spring") {
-            InitiateJump(lastMove);
-        }
-        else if (other.tag == "tile1"){
-            if (getCorrectFaceValue() == 1) {
-                markFaceGreen(other);
-            } else {
-                markFaceRed(other);
+        if (!isReset) {
+            if (other.tag == "Spring") {
+                InitiateJump(lastMove);
             }
-        }
-        else if (other.tag == "tile2"){
-            if (getCorrectFaceValue() == 2) {
-                markFaceGreen(other);
-            } else {
-                markFaceRed(other);
+            else if (other.tag == "tile1"){
+                if (getCorrectFaceValue() == 1) {
+                    markFaceGreen(other);
+                } else {
+                    markFaceRed(other);
+                }
             }
-        }
-        else if (other.tag == "tile3"){
-            if (getCorrectFaceValue() == 3) {
-                markFaceGreen(other);
-            } else {
-                markFaceRed(other);
+            else if (other.tag == "tile2"){
+                if (getCorrectFaceValue() == 2) {
+                    markFaceGreen(other);
+                } else {
+                    markFaceRed(other);
+                }
             }
-        }
-        else if (other.tag == "tile4"){
-            if (getCorrectFaceValue() == 4) {
-                markFaceGreen(other);
-            } else {
-                markFaceRed(other);
+            else if (other.tag == "tile3"){
+                if (getCorrectFaceValue() == 3) {
+                    markFaceGreen(other);
+                } else {
+                    markFaceRed(other);
+                }
             }
-        }
-        else if (other.tag == "tile5"){
-            if (getCorrectFaceValue() == 5) {
-                markFaceGreen(other);
-            } else {
-                markFaceRed(other);
+            else if (other.tag == "tile4"){
+                if (getCorrectFaceValue() == 4) {
+                    markFaceGreen(other);
+                } else {
+                    markFaceRed(other);
+                }
             }
-        }
-        else if (other.tag == "tile6"){
-            if (getCorrectFaceValue() == 6) {
-                markFaceGreen(other);
-            } else {
-                markFaceRed(other);
+            else if (other.tag == "tile5"){
+                if (getCorrectFaceValue() == 5) {
+                    markFaceGreen(other);
+                } else {
+                    markFaceRed(other);
+                }
             }
-        }
+            else if (other.tag == "tile6"){
+                if (getCorrectFaceValue() == 6) {
+                    markFaceGreen(other);
+                } else {
+                    markFaceRed(other);
+                }
+            }
+    }
     }
 }
