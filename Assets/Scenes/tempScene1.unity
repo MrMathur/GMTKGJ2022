@@ -437,7 +437,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Die
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5049232514759111795, guid: 2dbbab8c37cdf4483b143268d06e67ec, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2dbbab8c37cdf4483b143268d06e67ec, type: 3}
 --- !u!1001 &818860336
 PrefabInstance:

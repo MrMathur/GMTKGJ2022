@@ -11,12 +11,14 @@ public class CubeMovement : MonoBehaviour
     [SerializeField] private GameObject cube;
 
     private Quaternion face1quat;
+    private Rigidbody m_rigidbody;
 
     private bool _isMoving;
 
     private Vector3 lastMove;
     public GameObject environment;
     private bool isReset = false;
+    private bool isJumping = false;
 
     int getCorrectFaceValue() {
         
@@ -43,20 +45,28 @@ public class CubeMovement : MonoBehaviour
 
      public bool vecIsEqual(Vector3 vecA, Vector3 vecB)
     {
-        // Debug.Log(Vector3.Dot(vecA, vecB));
         return 1 - Vector3.Dot(vecA, vecB) < 0.01f;
     }   
 
     void Start() {
         environment = GameObject.FindWithTag("environment");
+        // m_rigidbody = GetComponent<Rigidbody>();
+
     }
 
     void Update()
     {
 
+        // if (m_rigidbody.velocity.magnitude != 0) {
+        //     _isMoving = true;
+        // } else {
+        //     _isMoving = false;
+        // }
+
         if (_isMoving || isReset) return;
 
        
+        Vector3 tmp = transform.position;
 
         if (Input.GetKeyDown(KeyCode.A)) {
             InitiateRoll(Vector3.left);
@@ -87,7 +97,6 @@ public class CubeMovement : MonoBehaviour
         Vector3 axis = Vector3.Cross(Vector3.up, dir);
 
         StartCoroutine(Roll(anchor, axis));
-        Debug.Log(environment.GetComponent<Environment>().moveCounter);
      }
 
     IEnumerator Reset () {
@@ -130,7 +139,9 @@ public class CubeMovement : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
         }
 
-        _isMoving = false;
+        if (!isJumping){
+            _isMoving = false;
+        }
         Vector3 tmp = transform.position;
         tmp.y = 5f;
         tmp.x = roundToFive((float) tmp.x);
@@ -145,13 +156,14 @@ public class CubeMovement : MonoBehaviour
     }
 
     IEnumerator Jump(Vector3 anchor, Vector3 axis) {
-        _isMoving = true;
-
+        isJumping = true;
         for (int i = 0; i < (180 / jumpSpeed); i++) {
             transform.RotateAround(anchor, axis, jumpSpeed);
             transform.RotateAround(transform.position,-axis,jumpSpeed/2);
             yield return new WaitForSeconds(0.01f);
+            
         }
+        isJumping = false;
         _isMoving = false;
         Vector3 tmp = transform.position;
         tmp.y = 5f;
