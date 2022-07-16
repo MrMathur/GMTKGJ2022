@@ -6,6 +6,12 @@ TagManager:
   tags:
   - NumberTile
   - Spring
+  - tile1
+  - tile2
+  - tile3
+  - tile4
+  - tile5
+  - tile6
   layers:
   - Default
   - TransparentFX
@@ -16,7 +22,7 @@ TagManager:
   - DiceDot
   - DiceFace
   - DiceCube
-  - 
+  - Backgroudn
   - 
   - 
   - 
