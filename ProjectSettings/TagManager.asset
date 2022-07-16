@@ -13,6 +13,9 @@ TagManager:
   - tile5
   - tile6
   - generic_tag
+  - environment
+  - bird_eye
+  - isometric
   layers:
   - Default
   - TransparentFX

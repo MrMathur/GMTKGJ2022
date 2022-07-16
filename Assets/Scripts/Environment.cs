@@ -48,15 +48,27 @@ public class Environment : MonoBehaviour
     public List<Move> moveSet;
     public int moves_gold = 5;
     public int moves_silver = 10;
+    public GameObject camera1;
+    public GameObject camera2;
     void Start()
     {
-        moveSet = new List<Move>();;
+        moveSet = new List<Move>();
         moveCounter = 0;
+        camera2.SetActive(false);
+        camera1.SetActive(true);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.Space)) {
+            if (camera1.active){
+                camera1.SetActive(false);
+                camera2.SetActive(true);
+            } else {
+                camera2.SetActive(false);
+                camera1.SetActive(true);
+            }
+        } 
     }
 }
