@@ -62,7 +62,7 @@ public class Environment : MonoBehaviour
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Space)) {
-            if (camera1.active){
+            if (camera1.activeInHierarchy){
                 camera1.SetActive(false);
                 camera2.SetActive(true);
             } else {
