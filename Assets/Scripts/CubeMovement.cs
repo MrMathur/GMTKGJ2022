@@ -83,7 +83,17 @@ public class CubeMovement : MonoBehaviour
         }
 
         _isMoving = false;
+        Vector3 tmp = transform.position;
+        tmp.y = 5f;
+        tmp.x = roundToFive((float) tmp.x);
+        tmp.z = roundToFive((float) tmp.z);
+
+        transform.position = tmp;
         
+    }
+
+    private int roundToFive(float x) {
+        return (int)(5 * Mathf.Round(x/5));
     }
 
     IEnumerator Jump(Vector3 anchor, Vector3 axis) {
@@ -94,8 +104,14 @@ public class CubeMovement : MonoBehaviour
             transform.RotateAround(transform.position,-axis,jumpSpeed/2);
             yield return new WaitForSeconds(0.01f);
         }
-
         _isMoving = false;
+        Vector3 tmp = transform.position;
+        tmp.y = 5f;
+        tmp.x = roundToFive((float) tmp.x);
+        tmp.z = roundToFive((float) tmp.z);
+
+        transform.position = tmp;
+
     }
 
     private void markFaceGreen(Collider other) {
