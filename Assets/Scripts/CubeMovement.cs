@@ -50,34 +50,28 @@ public class CubeMovement : MonoBehaviour
 
     void Start() {
         environment = GameObject.FindWithTag("environment");
-        // m_rigidbody = GetComponent<Rigidbody>();
 
     }
 
     void Update()
     {
 
-        // if (m_rigidbody.velocity.magnitude != 0) {
-        //     _isMoving = true;
-        // } else {
-        //     _isMoving = false;
-        // }
 
         if (_isMoving || isReset) return;
 
        
         Vector3 tmp = transform.position;
 
-        if (Input.GetKeyDown(KeyCode.A)) {
+        if (Input.GetKeyDown(KeyCode.A) && isMovableinDirection(Vector3.left)) {
             InitiateRoll(Vector3.left);
         }
-        else if (Input.GetKeyDown(KeyCode.D)) {
+        else if (Input.GetKeyDown(KeyCode.D)  && isMovableinDirection(Vector3.right)) {
             InitiateRoll(Vector3.right);
         }
-        else if (Input.GetKeyDown(KeyCode.W)) {
+        else if (Input.GetKeyDown(KeyCode.W)  && isMovableinDirection(Vector3.forward)) {
             InitiateRoll(Vector3.forward);
         }
-        else if (Input.GetKeyDown(KeyCode.S)) {
+        else if (Input.GetKeyDown(KeyCode.S) && isMovableinDirection(Vector3.back)) {
             InitiateRoll(Vector3.back);
         }
         else if (Input.GetKeyDown(KeyCode.R)){
@@ -87,9 +81,25 @@ public class CubeMovement : MonoBehaviour
          else if (Input.GetKeyDown(KeyCode.X)){
             printPlayerDetails();
         }
-
+      
     }
     
+
+    bool isMovableinDirection(Vector3 dir) {
+         // Bit shift the index of the layer (8) to get a bit mask
+        int layerMask = 1 << 8;
+
+        RaycastHit hit;
+
+        // This would cast rays only against colliders in layer 8.
+        // But instead we want to collide against everything except layer 8. The ~ operator does this, it inverts a bitmask.
+        layerMask = ~layerMask;
+          if (Physics.Raycast(transform.position, dir, out hit, Mathf.Infinity, layerMask)) // if (Physics.SphereCast(ray, radius, out hit,maxDistance))
+        {
+            return hit.distance > 6;
+        }
+        return true;
+    }
 
     void printPlayerDetails() {
         foreach (var move in PlayerStats.Levels) {
