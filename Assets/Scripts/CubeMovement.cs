@@ -83,6 +83,24 @@ public class CubeMovement : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.R)){
             StartCoroutine(Reset());
         }
+
+         else if (Input.GetKeyDown(KeyCode.X)){
+            printPlayerDetails();
+        }
+
+    }
+    
+
+    void printPlayerDetails() {
+        foreach (var move in PlayerStats.Levels) {
+            Debug.Log(move.levelIndex);
+            Debug.Log(move.stars);
+            Debug.Log(move.unlocked);
+            Debug.Log(move.cleared);
+            Debug.Log(move.numMoves);
+        }
+        Debug.Log(PlayerStats.CurrentLevel);
+
     }
 
 
@@ -175,7 +193,7 @@ public class CubeMovement : MonoBehaviour
     }
 
     private void markFaceGreen(Collider other) {
-        other.gameObject.GetComponent<MarkTile>().triggerColorGreen();
+        other.gameObject.GetComponent<MarkTile>().triggerColorGreen(environment.GetComponent<Environment>().moveCounter, environment.GetComponent<Environment>().moves_gold, environment.GetComponent<Environment>().moves_silver);
     }
 
     private void markFaceRed(Collider other) {

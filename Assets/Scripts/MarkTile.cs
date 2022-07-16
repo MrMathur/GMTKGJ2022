@@ -24,7 +24,7 @@ public class MarkTile : MonoBehaviour
         final_text.color = Color.red;
         isCorrect = false;
     }
-    public void triggerColorGreen() {
+    public void triggerColorGreen(int numMoves, int moves_gold, int moves_silver) {
         final_text.color = Color.green;
         isCorrect = true;
         GameObject[] obstacles = GameObject.FindGameObjectsWithTag("generic_tag");
@@ -36,7 +36,18 @@ public class MarkTile : MonoBehaviour
         }
 
         if (allCorrect) {
-            SceneManager.LoadScene("Level 1");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            PlayerStats.CurrentLevel +=1;
+            int stars = 1;
+            if (numMoves <= moves_gold) {
+                stars = 3;
+            } else if (numMoves <= moves_silver) {
+                stars = 2;
+            } 
+            PlayerStats.Levels[SceneManager.GetActiveScene().buildIndex - 1] = new LevelDetails(PlayerStats.CurrentLevel -1, stars, numMoves, true, true);
+            PlayerStats.Levels[SceneManager.GetActiveScene().buildIndex] = new LevelDetails(PlayerStats.CurrentLevel, 0, 0, true, false);
+
+
         }
 
 
