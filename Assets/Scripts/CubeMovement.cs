@@ -16,9 +16,13 @@ public class CubeMovement : MonoBehaviour
     private bool _isMoving;
 
     private Vector3 lastMove;
-    public GameObject environment;
+    private GameObject environment;
     private bool isReset = false;
     private bool isJumping = false;
+
+    [SerializeField] private AudioSource moveSound;
+    [SerializeField] private AudioSource correctSound;
+    [SerializeField] private AudioSource wrongSound;
 
     int getCorrectFaceValue() {
         
@@ -43,14 +47,13 @@ public class CubeMovement : MonoBehaviour
        return 0;
     }
 
-     public bool vecIsEqual(Vector3 vecA, Vector3 vecB)
+    public bool vecIsEqual(Vector3 vecA, Vector3 vecB)
     {
         return 1 - Vector3.Dot(vecA, vecB) < 0.01f;
     }   
 
     void Start() {
         environment = GameObject.FindWithTag("environment");
-
     }
 
     void Update()
@@ -74,16 +77,12 @@ public class CubeMovement : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.S) && isMovableinDirection(Vector3.back)) {
             InitiateRoll(Vector3.back);
         }
-        else if (Input.GetKeyDown(KeyCode.R)){
-            StartCoroutine(Reset());
-        }
 
          else if (Input.GetKeyDown(KeyCode.X)){
             printPlayerDetails();
         }
       
     }
-    
 
     bool isMovableinDirection(Vector3 dir) {
          // Bit shift the index of the layer (8) to get a bit mask
@@ -110,15 +109,13 @@ public class CubeMovement : MonoBehaviour
             Debug.Log(move.numMoves);
         }
         Debug.Log(PlayerStats.CurrentLevel);
-
     }
 
 
      void InitiateRoll(Vector3 dir, bool noEnv = false) {
         if (!noEnv) {
             Move newMove = new Move(dir, "Roll");
-            environment.GetComponent<Environment>().moveSet.Add(newMove);
-            environment.GetComponent<Environment>().moveCounter +=1;
+            environment.GetComponent<Environment>().MakeMove(newMove);
         }
         lastMove = dir;
         Vector3 anchor = transform.position + (Vector3.down + dir) * 5f;
@@ -127,15 +124,19 @@ public class CubeMovement : MonoBehaviour
         StartCoroutine(Roll(anchor, axis));
      }
 
+    public void InitiateReset() {
+        StartCoroutine(Reset());
+    }
+
     IEnumerator Reset () {
         isReset = true;
         environment.GetComponent<Environment>().moveSet.Reverse();
         foreach (var move in environment.GetComponent<Environment>().moveSet) {
             if (move.moveType == "Jump") {
                 InitiateJump(-move.moveDir, true);
-                yield return new WaitForSeconds(1f);
+                yield return new WaitForSeconds(0.1f);
 
-            } else{
+            } else {
                 InitiateRoll(-move.moveDir, true);
                 yield return new WaitForSeconds(0.4f);
 
@@ -149,18 +150,22 @@ public class CubeMovement : MonoBehaviour
 
 
     private void InitiateJump(Vector3 dir, bool noEnv = false) {
-        if (!noEnv) {
-            Move newMove = new Move(dir, "Jump");
-            environment.GetComponent<Environment>().moveSet.Add(newMove);
-        }
-        Vector3 anchor = transform.position + (dir * 10f);
-        Vector3 axis = Vector3.Cross(Vector3.up, dir);
+        if (!isJumping) {
+            if (!noEnv) {
+                Move newMove = new Move(dir, "Jump");
+                environment.GetComponent<Environment>().moveSet.Add(newMove);
+            }
+            Vector3 anchor = transform.position + (dir * 10f);
+            Vector3 axis = Vector3.Cross(Vector3.up, dir);
 
-        StartCoroutine(Jump(anchor, axis));
+            StartCoroutine(Jump(anchor, axis));
+        }
     }
 
     IEnumerator Roll(Vector3 anchor, Vector3 axis) {
         _isMoving = true;
+
+        moveSound.Play();
 
         for (int i = 0; i < (90 / rollSpeed); i++) {
             transform.RotateAround(anchor, axis, rollSpeed);
@@ -203,10 +208,12 @@ public class CubeMovement : MonoBehaviour
     }
 
     private void markFaceGreen(Collider other) {
+        correctSound.Play();
         other.gameObject.GetComponent<MarkTile>().triggerColorGreen(environment.GetComponent<Environment>().moveCounter, environment.GetComponent<Environment>().moves_gold, environment.GetComponent<Environment>().moves_silver);
     }
 
     private void markFaceRed(Collider other) {
+        wrongSound.Play();
         other.gameObject.GetComponent<MarkTile>().triggerColorRed();
     }
 

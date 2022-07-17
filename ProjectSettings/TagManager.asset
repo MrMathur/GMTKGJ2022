@@ -16,6 +16,9 @@ TagManager:
   - environment
   - bird_eye
   - isometric
+  - Die_Player
+  - NextLevelModal
+  - HUD
   layers:
   - Default
   - TransparentFX
