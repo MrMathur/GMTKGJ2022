@@ -23,6 +23,10 @@ TagManager:
   - play_button
   - moves_level_text
   - clear_level_text
+  - medal_level_tag
+  - current_medal
+  - gold_move_val
+  - silver_move_val
   layers:
   - Default
   - TransparentFX
