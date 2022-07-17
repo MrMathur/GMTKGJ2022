@@ -66,22 +66,23 @@ public class CubeMovement : MonoBehaviour
 
        
         Vector3 tmp = transform.position;
+        if (PlayerStats.canMove) {
+            if (Input.GetKeyDown(KeyCode.A) && isMovableinDirection(Vector3.left)) {
+                InitiateRoll(Vector3.left);
+            }
+            else if (Input.GetKeyDown(KeyCode.D)  && isMovableinDirection(Vector3.right)) {
+                InitiateRoll(Vector3.right);
+            }
+            else if (Input.GetKeyDown(KeyCode.W)  && isMovableinDirection(Vector3.forward)) {
+                InitiateRoll(Vector3.forward);
+            }
+            else if (Input.GetKeyDown(KeyCode.S) && isMovableinDirection(Vector3.back)) {
+                InitiateRoll(Vector3.back);
+            }
 
-        if (Input.GetKeyDown(KeyCode.A) && isMovableinDirection(Vector3.left)) {
-            InitiateRoll(Vector3.left);
-        }
-        else if (Input.GetKeyDown(KeyCode.D)  && isMovableinDirection(Vector3.right)) {
-            InitiateRoll(Vector3.right);
-        }
-        else if (Input.GetKeyDown(KeyCode.W)  && isMovableinDirection(Vector3.forward)) {
-            InitiateRoll(Vector3.forward);
-        }
-        else if (Input.GetKeyDown(KeyCode.S) && isMovableinDirection(Vector3.back)) {
-            InitiateRoll(Vector3.back);
-        }
-
-         else if (Input.GetKeyDown(KeyCode.X)){
-            printPlayerDetails();
+            else if (Input.GetKeyDown(KeyCode.X)){
+                printPlayerDetails();
+            }
         }
       
     }

@@ -7,7 +7,7 @@ public static class PlayerStats
 {
     public static List<LevelDetails> Levels { get; set; }
     public static int CurrentLevel { get; set; }
-
+    public static bool canMove {get; set;}
 }
 
 public struct LevelDetails {
@@ -54,6 +54,7 @@ public class Environment : MonoBehaviour
     {
         moveSet = new List<Move>();
         moveCounter = 0;
+        PlayerStats.canMove = true;
 
 
         camera1 = GameObject.FindGameObjectWithTag("isometric");

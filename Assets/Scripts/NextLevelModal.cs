@@ -14,10 +14,12 @@ public class NextLevelModal : MonoBehaviour
     }
 
     public void ShowModal() {
+        PlayerStats.canMove = false;
         CompletedLevelModal.SetActive(true);
     }
 
     public void HideModal() {
+        PlayerStats.canMove = true;
         CompletedLevelModal.SetActive(false);
     }
 }

@@ -20,6 +20,8 @@ public class FirstEnv : MonoBehaviour
                 PlayerStats.Levels.Add(x);
             }
         }
+        PlayerStats.canMove = true;
+
     }
 
     // Update is called once per frame
