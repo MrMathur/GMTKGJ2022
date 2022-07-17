@@ -11,9 +11,16 @@ public class MarkTile : MonoBehaviour
     public TMP_Text final_text;
     public bool isCorrect = false;
     private GameObject hud;
+    private GameObject environment;
+    private AudioSource envAudioSource;
+    [SerializeField] private AudioSource bronzeTone;
+    [SerializeField] private AudioSource silverTone;
+    [SerializeField] private AudioSource goldTone;
 
     void Start() {
         hud = GameObject.FindGameObjectWithTag("HUD");
+        environment = GameObject.FindGameObjectWithTag("environment");
+        envAudioSource = environment.GetComponent<AudioSource>();
     }
 
     public void triggerColorRed(bool isReset) {
@@ -46,6 +53,22 @@ public class MarkTile : MonoBehaviour
                 PlayerStats.Levels[SceneManager.GetActiveScene().buildIndex - 2] = new LevelDetails(PlayerStats.CurrentLevel -1, stars, numMoves, true, true);
                 PlayerStats.Levels[SceneManager.GetActiveScene().buildIndex - 1] = new LevelDetails(PlayerStats.CurrentLevel, 0, 0, true, false);
                 hud.GetComponent<NextLevelModal>().ShowModal();
+                envAudioSource.Pause();
+                if (environment.GetComponent<Environment>().moveCounter <= environment.GetComponent<Environment>().moves_gold)
+                {
+                    goldTone.Play();
+                }
+                else if (environment.GetComponent<Environment>().moveCounter <= environment.GetComponent<Environment>().moves_silver)
+                {
+                    silverTone.Play();
+                }
+                else
+                {
+                    bronzeTone.Play();
+                }
+
+
+
             }
 
         } else {
