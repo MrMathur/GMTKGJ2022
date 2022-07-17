@@ -391,9 +391,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 211273733687199231, guid: f97f0e3b7f5492b4f99af3a5a623b7cb, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: -1321349393580917714, guid: a5000e20a8ea04fae956bbca0792ad34, type: 2}
+    - target: {fileID: 2133206616325582824, guid: f97f0e3b7f5492b4f99af3a5a623b7cb, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: a5000e20a8ea04fae956bbca0792ad34, type: 2}
+    - target: {fileID: 2133206616325582824, guid: f97f0e3b7f5492b4f99af3a5a623b7cb, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -1321349393580917714, guid: a5000e20a8ea04fae956bbca0792ad34, type: 2}
     - target: {fileID: 3891080265935374144, guid: f97f0e3b7f5492b4f99af3a5a623b7cb, type: 3}
       propertyPath: m_Name
       value: tile4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4246663197180585358, guid: f97f0e3b7f5492b4f99af3a5a623b7cb, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: a5000e20a8ea04fae956bbca0792ad34, type: 2}
+    - target: {fileID: 4246663197180585358, guid: f97f0e3b7f5492b4f99af3a5a623b7cb, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8423198139878113673, guid: f97f0e3b7f5492b4f99af3a5a623b7cb, type: 3}
       propertyPath: m_RootOrder
