@@ -20,6 +20,10 @@ public class CubeMovement : MonoBehaviour
     private bool isReset = false;
     private bool isJumping = false;
 
+    [SerializeField] private AudioSource moveSound;
+    [SerializeField] private AudioSource correctSound;
+    [SerializeField] private AudioSource wrongSound;
+
     int getCorrectFaceValue() {
         
        if (vecIsEqual(cube.transform.up, Vector3.up)){
@@ -73,16 +77,12 @@ public class CubeMovement : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.S) && isMovableinDirection(Vector3.back)) {
             InitiateRoll(Vector3.back);
         }
-        // else if (Input.GetKeyDown(KeyCode.R)){
-        //     StartCoroutine(Reset());
-        // }
 
          else if (Input.GetKeyDown(KeyCode.X)){
             printPlayerDetails();
         }
       
     }
-    
 
     bool isMovableinDirection(Vector3 dir) {
          // Bit shift the index of the layer (8) to get a bit mask
@@ -166,6 +166,8 @@ public class CubeMovement : MonoBehaviour
     IEnumerator Roll(Vector3 anchor, Vector3 axis) {
         _isMoving = true;
 
+        moveSound.Play();
+
         for (int i = 0; i < (90 / rollSpeed); i++) {
             transform.RotateAround(anchor, axis, rollSpeed);
             yield return new WaitForSeconds(0.01f);
@@ -207,10 +209,12 @@ public class CubeMovement : MonoBehaviour
     }
 
     private void markFaceGreen(Collider other) {
+        correctSound.Play();
         other.gameObject.GetComponent<MarkTile>().triggerColorGreen(environment.GetComponent<Environment>().moveCounter, environment.GetComponent<Environment>().moves_gold, environment.GetComponent<Environment>().moves_silver);
     }
 
     private void markFaceRed(Collider other) {
+        wrongSound.Play();
         other.gameObject.GetComponent<MarkTile>().triggerColorRed();
     }
 
