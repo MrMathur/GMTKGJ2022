@@ -27,8 +27,12 @@ public class UpdateMoveText : MonoBehaviour
     void Start() {
         environment = GameObject.FindGameObjectWithTag("environment");
         medalImage = GameObject.FindGameObjectWithTag("medal_level_tag");
-        goldMoves.SetText(environment.GetComponent<Environment>().moves_gold.ToString());
-        silverMoves.SetText(environment.GetComponent<Environment>().moves_silver.ToString());
+        if (goldMoves != null) {
+            goldMoves.SetText(environment.GetComponent<Environment>().moves_gold.ToString());
+        }
+        if (silverMoves != null) {
+            silverMoves.SetText(environment.GetComponent<Environment>().moves_silver.ToString());
+        }
     }
     
 
@@ -49,13 +53,14 @@ public class UpdateMoveText : MonoBehaviour
                 medalImage.GetComponent<Image>().sprite = gold;
             }
         }
-
-        if (environment.GetComponent<Environment>().moveCounter <= environment.GetComponent<Environment>().moves_gold) {
-            currentMedal.GetComponent<Image>().sprite = gold;
-        } else if (environment.GetComponent<Environment>().moveCounter <= environment.GetComponent<Environment>().moves_silver) {
-            currentMedal.GetComponent<Image>().sprite = silver;
-        } else {
-            currentMedal.GetComponent<Image>().sprite = bronze;
+        if (currentMedal!= null) {
+            if (environment.GetComponent<Environment>().moveCounter <= environment.GetComponent<Environment>().moves_gold) {
+                currentMedal.GetComponent<Image>().sprite = gold;
+            } else if (environment.GetComponent<Environment>().moveCounter <= environment.GetComponent<Environment>().moves_silver) {
+                currentMedal.GetComponent<Image>().sprite = silver;
+            } else {
+                currentMedal.GetComponent<Image>().sprite = bronze;
+            }
         }
     }
 }
