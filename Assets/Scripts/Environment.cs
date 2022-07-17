@@ -47,15 +47,20 @@ public class Environment : MonoBehaviour
     public List<Move> moveSet;
     public int moves_gold = 5;
     public int moves_silver = 10;
-    public GameObject camera1;
-    public GameObject camera2;
+    private GameObject camera1;
+    private GameObject camera2;
 
     void Start()
     {
         moveSet = new List<Move>();
         moveCounter = 0;
+
+
+        camera1 = GameObject.FindGameObjectWithTag("isometric");
+        camera2 = GameObject.FindGameObjectWithTag("bird_eye");
         camera2.SetActive(false);
         camera1.SetActive(true);
+
     }
 
     public void MakeMove(Move newMove) {
