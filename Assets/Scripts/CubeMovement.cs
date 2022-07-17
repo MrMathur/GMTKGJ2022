@@ -16,7 +16,7 @@ public class CubeMovement : MonoBehaviour
     private bool _isMoving;
 
     private Vector3 lastMove;
-    public GameObject environment;
+    private GameObject environment;
     private bool isReset = false;
     private bool isJumping = false;
 
@@ -116,9 +116,6 @@ public class CubeMovement : MonoBehaviour
         if (!noEnv) {
             Move newMove = new Move(dir, "Roll");
             environment.GetComponent<Environment>().MakeMove(newMove);
-            // environment.GetComponent<Environment>().moveSet.Add(newMove);
-            // environment.GetComponent<Environment>().moveCounter +=1;
-            // moveText_text.text = "" + environment.GetComponent<Environment>().moveCounter;
         }
         lastMove = dir;
         Vector3 anchor = transform.position + (Vector3.down + dir) * 5f;
@@ -153,14 +150,16 @@ public class CubeMovement : MonoBehaviour
 
 
     private void InitiateJump(Vector3 dir, bool noEnv = false) {
-        if (!noEnv) {
-            Move newMove = new Move(dir, "Jump");
-            environment.GetComponent<Environment>().moveSet.Add(newMove);
-        }
-        Vector3 anchor = transform.position + (dir * 10f);
-        Vector3 axis = Vector3.Cross(Vector3.up, dir);
+        if (!isJumping) {
+            if (!noEnv) {
+                Move newMove = new Move(dir, "Jump");
+                environment.GetComponent<Environment>().moveSet.Add(newMove);
+            }
+            Vector3 anchor = transform.position + (dir * 10f);
+            Vector3 axis = Vector3.Cross(Vector3.up, dir);
 
-        StartCoroutine(Jump(anchor, axis));
+            StartCoroutine(Jump(anchor, axis));
+        }
     }
 
     IEnumerator Roll(Vector3 anchor, Vector3 axis) {

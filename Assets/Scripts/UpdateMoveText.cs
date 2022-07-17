@@ -8,8 +8,12 @@ public class UpdateMoveText : MonoBehaviour
 {
 
     [SerializeField] private TMP_Text moveText;
-    [SerializeField] private GameObject environment;
+    private GameObject environment;
     [SerializeField] private bool fullText = false;
+
+    void Start() {
+        environment = GameObject.FindGameObjectWithTag("environment");
+    }
     
 
     // Update is called once per frame
