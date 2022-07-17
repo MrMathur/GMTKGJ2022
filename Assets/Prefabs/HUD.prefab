@@ -1666,7 +1666,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveText: {fileID: 8250444888115991804}
-  environment: {fileID: 0}
   fullText: 0
 --- !u!1 &8250444888123151894
 GameObject:
@@ -1936,7 +1935,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveText: {fileID: 8250444888184181840}
-  environment: {fileID: 0}
   fullText: 1
 --- !u!1 &8250444888444453897
 GameObject:
