@@ -144,6 +144,7 @@ public class CubeMovement : MonoBehaviour
     IEnumerator Reset () {
         isReset = true;
         environment.GetComponent<Environment>().moveSet.Reverse();
+        Debug.Log(lastCollider);
         if (lastCollider != null) {
             char tileName = lastCollider.tag[lastCollider.tag.Length -1];
             int tileNum = tileName - '0';
@@ -156,11 +157,11 @@ public class CubeMovement : MonoBehaviour
         foreach (var move in environment.GetComponent<Environment>().moveSet) {
             if (move.moveType == "Jump") {
                 InitiateJump(-move.moveDir, true);
-                yield return new WaitForSeconds(1.2f);
+                yield return new WaitForSeconds(0.8f);
 
             } else {
                 InitiateRoll(-move.moveDir, true);
-                yield return new WaitForSeconds(0.6f);
+                yield return new WaitForSeconds(0.4f);
 
             }
         }
@@ -256,13 +257,14 @@ public class CubeMovement : MonoBehaviour
         if (other.tag == "Spring") {
             InitiateJump(lastMove);
         }
-        if (!isReset) {
-            lastCollider = other;
-        }
+       
        
         char tileName = other.tag[other.tag.Length -1];
         int tileNum = tileName - '0';
         if (tileNum > 0 && tileNum < 7) {
+            if (!isReset) {
+                lastCollider = other;
+            }
             if (getCorrectFaceValue() == tileNum) {
                 markFaceGreen(other);
             } else {

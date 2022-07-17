@@ -8,12 +8,12 @@ public class ChooseLevel : MonoBehaviour
 {
     // Start is called before the first frame update
     private TMP_Text m_TextComponent;
-    public Sprite unknownMedal; // I attched these from editor
+    public Sprite unknownMedal; // test attched these from editor
     public Sprite bronzeMedal;
     public Sprite silverMedal;
     public Sprite goldMedal;
     public Color green;
-
+    private int test;
 
     void Start()
     {
@@ -23,39 +23,37 @@ public class ChooseLevel : MonoBehaviour
         GameObject[] playButtons = GameObject.FindGameObjectsWithTag("play_button");
 
 
-
-
-        int i = 0;
+        test = 0;
         foreach (var level in PlayerStats.Levels) {
             if (level.stars == 0) {
-                medalImages[i].GetComponent<Image>().sprite = unknownMedal;
+                medalImages[test].GetComponent<Image>().sprite = unknownMedal;
             } else if(level.stars == 1) {
-                medalImages[i].GetComponent<Image>().sprite = bronzeMedal;
+                medalImages[test].GetComponent<Image>().sprite = bronzeMedal;
             } else if(level.stars ==2) {
-                medalImages[i].GetComponent<Image>().sprite = silverMedal;
+                medalImages[test].GetComponent<Image>().sprite = silverMedal;
             } else {
-                medalImages[i].GetComponent<Image>().sprite = goldMedal;
+                medalImages[test].GetComponent<Image>().sprite = goldMedal;
 
             }
             if (!level.unlocked) {
-                playButtons[i].SetActive(false);
+                playButtons[test].SetActive(false);
             }
-            if (PlayerStats.CurrentLevel == i+1) {
-                playButtons[i].GetComponent<Image>().color = green;
+            if (PlayerStats.CurrentLevel == test + 1) {
+                playButtons[test].GetComponent<Image>().color = green;
             }
 
             if (!level.cleared) {
-                clearText[i].SetActive(false);
-                moveText[i].SetActive(false);
+                clearText[test].SetActive(false);
+                moveText[test].SetActive(false);
             } else {
-                clearText[i].SetActive(true);
-                moveText[i].SetActive(true);
-                m_TextComponent = moveText[i].GetComponent<TMP_Text>();
+                clearText[test].SetActive(true);
+                moveText[test].SetActive(true);
+                m_TextComponent = moveText[test].GetComponent<TMP_Text>();
  
                 // Change the text on the text component.
                 m_TextComponent.text = level.numMoves.ToString()+ " moves";
             }
-            i+=1;
+            test+=1;
         }
 
     }
