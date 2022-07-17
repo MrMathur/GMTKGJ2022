@@ -11,7 +11,7 @@ public class FirstEnv : MonoBehaviour
         if (PlayerStats.Levels == null) {
             PlayerStats.Levels = new List<LevelDetails>();
             PlayerStats.CurrentLevel = 1;
-            for (int i=0; i< SceneManager.sceneCountInBuildSettings - 2; i++){
+            for (int i=0; i< SceneManager.sceneCountInBuildSettings - 3; i++){
                 bool unlocked = false;
                 if (i==0){
                     unlocked = true;
