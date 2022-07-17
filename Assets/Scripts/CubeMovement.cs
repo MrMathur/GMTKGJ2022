@@ -25,6 +25,7 @@ public class CubeMovement : MonoBehaviour
     [SerializeField] private AudioSource moveSound;
     [SerializeField] private AudioSource correctSound;
     [SerializeField] private AudioSource wrongSound;
+    [SerializeField] private AudioSource jumpSound;
 
     int getCorrectFaceValue() {
         
@@ -205,6 +206,7 @@ public class CubeMovement : MonoBehaviour
 
     IEnumerator Jump(Vector3 anchor, Vector3 axis) {
         isJumping = true;
+        jumpSound.Play();
         for (int i = 0; i < (180 / jumpSpeed); i++) {
             transform.RotateAround(anchor, axis, jumpSpeed);
             transform.RotateAround(transform.position,-axis,jumpSpeed/2);
