@@ -247,6 +247,7 @@ public class CubeMovement : MonoBehaviour
         if (!isReset) {
             lastCollider = other;
         }
+       
         char tileName = other.tag[other.tag.Length -1];
         int tileNum = tileName - '0';
         if (tileNum > 0 && tileNum < 7) {

@@ -20,9 +20,6 @@ public class MarkTile : MonoBehaviour
         if (!isReset) {
             final_text.color = Color.red;
             isCorrect = false;
-        } else {
-            final_text.color = Color.green;
-            isCorrect = true;
         }
     }
 
