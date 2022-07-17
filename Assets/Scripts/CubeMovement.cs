@@ -20,6 +20,8 @@ public class CubeMovement : MonoBehaviour
     private bool isReset = false;
     private bool isJumping = false;
 
+    Collider lastCollider = null;
+
     [SerializeField] private AudioSource moveSound;
     [SerializeField] private AudioSource correctSound;
     [SerializeField] private AudioSource wrongSound;
@@ -131,6 +133,15 @@ public class CubeMovement : MonoBehaviour
     IEnumerator Reset () {
         isReset = true;
         environment.GetComponent<Environment>().moveSet.Reverse();
+        if (lastCollider != null) {
+            char tileName = lastCollider.tag[lastCollider.tag.Length -1];
+            int tileNum = tileName - '0';
+            if (getCorrectFaceValue() == tileNum) {
+                markFaceGreen(lastCollider);
+            } else {
+                markFaceRed(lastCollider);
+            }
+        }
         foreach (var move in environment.GetComponent<Environment>().moveSet) {
             if (move.moveType == "Jump") {
                 InitiateJump(-move.moveDir, true);
@@ -164,6 +175,9 @@ public class CubeMovement : MonoBehaviour
 
     IEnumerator Roll(Vector3 anchor, Vector3 axis) {
         _isMoving = true;
+        if (!isReset) {
+            lastCollider = null;
+        }
 
         moveSound.Play();
 
@@ -208,70 +222,39 @@ public class CubeMovement : MonoBehaviour
     }
 
     private void markFaceGreen(Collider other) {
-        correctSound.Play();
-        other.gameObject.GetComponent<MarkTile>().triggerColorGreen(environment.GetComponent<Environment>().moveCounter, environment.GetComponent<Environment>().moves_gold, environment.GetComponent<Environment>().moves_silver);
+        if (!isReset) {
+            correctSound.Play();
+        }
+        other.gameObject.GetComponent<MarkTile>().triggerColorGreen(isReset, environment.GetComponent<Environment>().moveCounter, environment.GetComponent<Environment>().moves_gold, environment.GetComponent<Environment>().moves_silver);
     }
 
     private void markFaceRed(Collider other) {
-        wrongSound.Play();
-        other.gameObject.GetComponent<MarkTile>().triggerColorRed();
+        if (!isReset) {
+            wrongSound.Play();
+        }
+        other.gameObject.GetComponent<MarkTile>().triggerColorRed(isReset);
     }
 
-    private void toggleFace(Collider other) {
-        other.gameObject.GetComponent<MarkTile>().triggerToggle();
+    private void resetCurrentFace() {
+
     }
 
 
     private void OnTriggerEnter(Collider other) {
-        if (!isReset) {
-            if (other.tag == "Spring") {
-                InitiateJump(lastMove);
-            }
-            else if (other.tag == "tile1"){
-                if (getCorrectFaceValue() == 1) {
-                    markFaceGreen(other);
-                } else {
-                    markFaceRed(other);
-                }
-            }
-            else if (other.tag == "tile2"){
-                if (getCorrectFaceValue() == 2) {
-                    markFaceGreen(other);
-                } else {
-                    markFaceRed(other);
-                }
-            }
-            else if (other.tag == "tile3"){
-                if (getCorrectFaceValue() == 3) {
-                    markFaceGreen(other);
-                } else {
-                    markFaceRed(other);
-                }
-            }
-            else if (other.tag == "tile4"){
-                if (getCorrectFaceValue() == 4) {
-                    markFaceGreen(other);
-                } else {
-                    markFaceRed(other);
-                }
-            }
-            else if (other.tag == "tile5"){
-                if (getCorrectFaceValue() == 5) {
-                    markFaceGreen(other);
-                } else {
-                    markFaceRed(other);
-                }
-            }
-            else if (other.tag == "tile6"){
-                if (getCorrectFaceValue() == 6) {
-                    markFaceGreen(other);
-                } else {
-                    markFaceRed(other);
-                }
-            }
-        } else {
-            if (other.tag == "tile1" || other.tag == "tile2" || other.tag == "tile3" || other.tag == "tile4" || other.tag == "tile5" || other.tag == "tile6")
-                toggleFace(other);
+        if (other.tag == "Spring") {
+            InitiateJump(lastMove);
         }
+        if (!isReset) {
+            lastCollider = other;
+        }
+        char tileName = other.tag[other.tag.Length -1];
+        int tileNum = tileName - '0';
+        if (tileNum > 0 && tileNum < 7) {
+            if (getCorrectFaceValue() == tileNum) {
+                markFaceGreen(other);
+            } else {
+                markFaceRed(other);
+            }
+        }      
     }
 }

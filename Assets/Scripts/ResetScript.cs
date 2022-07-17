@@ -13,7 +13,6 @@ public class ResetScript : MonoBehaviour
     }
 
     public void Reset() {
-        Debug.Log("Clicked");
         player.GetComponent<CubeMovement>().InitiateReset();
         hud.GetComponent<NextLevelModal>().HideModal();
     }

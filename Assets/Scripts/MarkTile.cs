@@ -16,40 +16,45 @@ public class MarkTile : MonoBehaviour
         hud = GameObject.FindGameObjectWithTag("HUD");
     }
 
-    public void triggerColorRed() {
-        final_text.color = Color.red;
-        isCorrect = false;
+    public void triggerColorRed(bool isReset) {
+        if (!isReset) {
+            final_text.color = Color.red;
+            isCorrect = false;
+        } else {
+            final_text.color = Color.green;
+            isCorrect = true;
+        }
     }
 
-    public void triggerToggle() {
-        final_text.color = final_text.color == Color.red ? Color.green : Color.red;
-        isCorrect = !isCorrect;
-    }
-    
-    public void triggerColorGreen(int numMoves, int moves_gold, int moves_silver) {
-        final_text.color = Color.green;
-        isCorrect = true;
-        GameObject[] obstacles = GameObject.FindGameObjectsWithTag("generic_tag");
-        var allCorrect = true;
-        foreach(GameObject obst in obstacles) {
-            if(!obst.transform.GetChild(0).gameObject.GetComponent<MarkTile>().isCorrect){ 
-                allCorrect = false;
+    public void triggerColorGreen(bool isReset, int numMoves, int moves_gold, int moves_silver) {
+        if (!isReset) {
+            final_text.color = Color.green;
+            isCorrect = true;
+            GameObject[] obstacles = GameObject.FindGameObjectsWithTag("generic_tag");
+            var allCorrect = true;
+            foreach(GameObject obst in obstacles) {
+                if(!obst.transform.GetChild(0).gameObject.GetComponent<MarkTile>().isCorrect){ 
+                    allCorrect = false;
+                }
             }
-        }
 
-        if (allCorrect) {
-            PlayerStats.CurrentLevel +=1;
-            int stars = 1;
-            if (numMoves <= moves_gold) {
-                stars = 3;
-            } else if (numMoves <= moves_silver) {
-                stars = 2;
-            } 
-            PlayerStats.Levels[SceneManager.GetActiveScene().buildIndex - 1] = new LevelDetails(PlayerStats.CurrentLevel -1, stars, numMoves, true, true);
-            PlayerStats.Levels[SceneManager.GetActiveScene().buildIndex] = new LevelDetails(PlayerStats.CurrentLevel, 0, 0, true, false);
-            hud.GetComponent<NextLevelModal>().ShowModal();
-        }
+            if (allCorrect) {
+                PlayerStats.CurrentLevel +=1;
+                int stars = 1;
+                if (numMoves <= moves_gold) {
+                    stars = 3;
+                } else if (numMoves <= moves_silver) {
+                    stars = 2;
+                } 
+                PlayerStats.Levels[SceneManager.GetActiveScene().buildIndex - 1] = new LevelDetails(PlayerStats.CurrentLevel -1, stars, numMoves, true, true);
+                PlayerStats.Levels[SceneManager.GetActiveScene().buildIndex] = new LevelDetails(PlayerStats.CurrentLevel, 0, 0, true, false);
+                hud.GetComponent<NextLevelModal>().ShowModal();
+            }
 
+        } else {
+            final_text.color = Color.red;
+            isCorrect = false;
+        }
     }
 
     
