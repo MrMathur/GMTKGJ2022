@@ -10,20 +10,12 @@ public class MarkTile : MonoBehaviour
 
     public TMP_Text final_text;
     public bool isCorrect = false;
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void triggerColorRed() {
         final_text.color = Color.red;
         isCorrect = false;
     }
+    
     public void triggerColorGreen(int numMoves, int moves_gold, int moves_silver) {
         final_text.color = Color.green;
         isCorrect = true;

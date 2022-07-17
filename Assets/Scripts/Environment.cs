@@ -41,7 +41,6 @@ public struct Move {
 }
 
 
-
 public class Environment : MonoBehaviour
 {
     public int moveCounter = 0;
@@ -50,12 +49,18 @@ public class Environment : MonoBehaviour
     public int moves_silver = 10;
     public GameObject camera1;
     public GameObject camera2;
+
     void Start()
     {
         moveSet = new List<Move>();
         moveCounter = 0;
         camera2.SetActive(false);
         camera1.SetActive(true);
+    }
+
+    public void MakeMove(Move newMove) {
+        moveSet.Add(newMove);
+        moveCounter +=1;
     }
 
     // Update is called once per frame

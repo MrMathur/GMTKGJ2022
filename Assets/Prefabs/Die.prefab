@@ -111,7 +111,7 @@ GameObject:
   - component: {fileID: 4168710199580948372}
   m_Layer: 8
   m_Name: Die
-  m_TagString: Untagged
+  m_TagString: Die_Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -150,8 +150,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c28763653e39948539541729ed887ca7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rollSpeed: 3
-  jumpSpeed: 3
+  rollSpeed: 9
+  jumpSpeed: 9
   cube: {fileID: 6094536064410518892}
   environment: {fileID: 0}
 --- !u!65 &6094536064923192049
