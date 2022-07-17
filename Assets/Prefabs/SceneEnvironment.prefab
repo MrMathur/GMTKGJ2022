@@ -48,8 +48,6 @@ MonoBehaviour:
   moveCounter: 0
   moves_gold: 5
   moves_silver: 10
-  camera1: {fileID: 0}
-  camera2: {fileID: 0}
 --- !u!82 &6056387777471822131
 AudioSource:
   m_ObjectHideFlags: 0
@@ -60,9 +58,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: c62498fac5e08416c8a8df427ad8501b, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 59c738c6266715a4cad83d7214d73b32, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 0.43
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -106,7 +104,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.449
       inSlope: 0
       outSlope: 0
       tangentMode: 0
