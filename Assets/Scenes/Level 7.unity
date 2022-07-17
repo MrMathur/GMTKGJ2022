@@ -1625,6 +1625,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 234579899023373365, guid: ecac33d68d52a4abcb254be0d931d0f9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1487617578941900533, guid: ecac33d68d52a4abcb254be0d931d0f9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1783739146600089235, guid: ecac33d68d52a4abcb254be0d931d0f9, type: 3}
+      propertyPath: m_text
+      value: You can also cross over gaps with a jump.
+      objectReference: {fileID: 0}
+    - target: {fileID: 1873192670781232972, guid: ecac33d68d52a4abcb254be0d931d0f9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3233325594801932332, guid: ecac33d68d52a4abcb254be0d931d0f9, type: 3}
+      propertyPath: m_text
+      value: Jumping can help you avoid cells and reduce moves.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7563834082089580402, guid: ecac33d68d52a4abcb254be0d931d0f9, type: 3}
+      propertyPath: m_text
+      value: Rolling into a trampoline can make you
+      objectReference: {fileID: 0}
     - target: {fileID: 8250444888123151894, guid: ecac33d68d52a4abcb254be0d931d0f9, type: 3}
       propertyPath: m_Name
       value: HUD
@@ -1712,6 +1736,10 @@ PrefabInstance:
     - target: {fileID: 8250444888123151898, guid: ecac33d68d52a4abcb254be0d931d0f9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8304336334086392155, guid: ecac33d68d52a4abcb254be0d931d0f9, type: 3}
+      propertyPath: m_text
+      value: JUMP.
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ecac33d68d52a4abcb254be0d931d0f9, type: 3}
