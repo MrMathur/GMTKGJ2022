@@ -243,6 +243,14 @@ PrefabInstance:
       propertyPath: camera2
       value: 
       objectReference: {fileID: 1002222783}
+    - target: {fileID: 5968908962955799296, guid: 11af5abca27b12946a68ef4b6176b562, type: 3}
+      propertyPath: moves_gold
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5968908962955799296, guid: 11af5abca27b12946a68ef4b6176b562, type: 3}
+      propertyPath: moves_silver
+      value: 12
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11af5abca27b12946a68ef4b6176b562, type: 3}
 --- !u!1001 &126077552
