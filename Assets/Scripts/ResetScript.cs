@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class ResetScript : MonoBehaviour
 {
@@ -15,5 +17,9 @@ public class ResetScript : MonoBehaviour
     public void Reset() {
         player.GetComponent<CubeMovement>().InitiateReset();
         hud.GetComponent<NextLevelModal>().HideModal();
+    }
+
+    public void ChooseLevel() {
+        SceneManager.LoadScene(1);
     }
 }
