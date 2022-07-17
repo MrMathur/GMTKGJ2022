@@ -15,7 +15,12 @@ public class ResetScript : MonoBehaviour
     }
 
     public void Reset() {
-        player.GetComponent<CubeMovement>().InitiateReset();
+        player.GetComponent<CubeMovement>().InitiateReset(false);
+        hud.GetComponent<NextLevelModal>().HideModal();
+    }
+
+    public void Retry() {
+        player.GetComponent<CubeMovement>().InitiateReset(true);
         hud.GetComponent<NextLevelModal>().HideModal();
     }
 

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class CubeMovement : MonoBehaviour
 {
@@ -128,8 +129,16 @@ public class CubeMovement : MonoBehaviour
         StartCoroutine(Roll(anchor, axis));
      }
 
-    public void InitiateReset() {
+    public void InitiateReset(bool isRetry) {
+        if (environment.GetComponent<Environment>().moveCounter > 10 || isRetry) {
+            retry();
+            return;
+        }
         StartCoroutine(Reset());
+    }
+
+    public void retry () {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     IEnumerator Reset () {

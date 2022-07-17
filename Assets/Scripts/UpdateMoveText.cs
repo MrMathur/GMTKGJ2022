@@ -49,7 +49,6 @@ public class UpdateMoveText : MonoBehaviour
         }
 
         if (environment.GetComponent<Environment>().moveCounter <= environment.GetComponent<Environment>().moves_gold) {
-            Debug.Log(environment.GetComponent<Environment>().moveCounter);
             currentMedal.GetComponent<Image>().sprite = gold;
         } else if (environment.GetComponent<Environment>().moveCounter <= environment.GetComponent<Environment>().moves_silver) {
             currentMedal.GetComponent<Image>().sprite = silver;
