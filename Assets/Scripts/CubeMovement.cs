@@ -134,11 +134,11 @@ public class CubeMovement : MonoBehaviour
         foreach (var move in environment.GetComponent<Environment>().moveSet) {
             if (move.moveType == "Jump") {
                 InitiateJump(-move.moveDir, true);
-                yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSeconds(1.2f);
 
             } else {
                 InitiateRoll(-move.moveDir, true);
-                yield return new WaitForSeconds(0.4f);
+                yield return new WaitForSeconds(0.6f);
 
             }
         }
@@ -217,6 +217,10 @@ public class CubeMovement : MonoBehaviour
         other.gameObject.GetComponent<MarkTile>().triggerColorRed();
     }
 
+    private void toggleFace(Collider other) {
+        other.gameObject.GetComponent<MarkTile>().triggerToggle();
+    }
+
 
     private void OnTriggerEnter(Collider other) {
         if (!isReset) {
@@ -265,6 +269,9 @@ public class CubeMovement : MonoBehaviour
                     markFaceRed(other);
                 }
             }
-    }
+        } else {
+            if (other.tag == "tile1" || other.tag == "tile2" || other.tag == "tile3" || other.tag == "tile4" || other.tag == "tile5" || other.tag == "tile6")
+                toggleFace(other);
+        }
     }
 }

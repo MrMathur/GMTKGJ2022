@@ -20,6 +20,11 @@ public class MarkTile : MonoBehaviour
         final_text.color = Color.red;
         isCorrect = false;
     }
+
+    public void triggerToggle() {
+        final_text.color = final_text.color == Color.red ? Color.green : Color.red;
+        isCorrect = !isCorrect;
+    }
     
     public void triggerColorGreen(int numMoves, int moves_gold, int moves_silver) {
         final_text.color = Color.green;
