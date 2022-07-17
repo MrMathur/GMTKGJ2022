@@ -1120,9 +1120,33 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 271266172236461659, guid: 6f6c7717992042d4f8e25e25a5d0fc36, type: 3}
+      propertyPath: m_fontSize
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 271266172236461659, guid: 6f6c7717992042d4f8e25e25a5d0fc36, type: 3}
+      propertyPath: m_fontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 271266172236461659, guid: 6f6c7717992042d4f8e25e25a5d0fc36, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 28
+      objectReference: {fileID: 0}
     - target: {fileID: 3891080265935374144, guid: 6f6c7717992042d4f8e25e25a5d0fc36, type: 3}
       propertyPath: m_Name
       value: tile5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4395991470860090865, guid: 6f6c7717992042d4f8e25e25a5d0fc36, type: 3}
+      propertyPath: m_fontSize
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 4395991470860090865, guid: 6f6c7717992042d4f8e25e25a5d0fc36, type: 3}
+      propertyPath: m_fontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4395991470860090865, guid: 6f6c7717992042d4f8e25e25a5d0fc36, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 28
       objectReference: {fileID: 0}
     - target: {fileID: 8423198139878113673, guid: 6f6c7717992042d4f8e25e25a5d0fc36, type: 3}
       propertyPath: m_RootOrder
