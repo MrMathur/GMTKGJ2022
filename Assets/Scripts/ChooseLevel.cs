@@ -41,7 +41,6 @@ public class ChooseLevel : MonoBehaviour
                 playButtons[i].SetActive(false);
             }
             if (PlayerStats.CurrentLevel == i+1) {
-                Debug.Log(green);
                 playButtons[i].GetComponent<Image>().color = green;
             }
 
