@@ -63,7 +63,9 @@ public class MarkTile : MonoBehaviour
                     stars = 2;
                 } 
                 PlayerStats.Levels[SceneManager.GetActiveScene().buildIndex - 2] = new LevelDetails(PlayerStats.CurrentLevel -1, stars, numMoves, true, true);
-                PlayerStats.Levels[SceneManager.GetActiveScene().buildIndex - 1] = new LevelDetails(PlayerStats.CurrentLevel, 0, 0, true, false);
+                if (SceneManager.GetActiveScene().buildIndex - 2 != 9) {
+                    PlayerStats.Levels[SceneManager.GetActiveScene().buildIndex - 1] = new LevelDetails(PlayerStats.CurrentLevel, 0, 0, true, false);
+                }
                 hud.GetComponent<NextLevelModal>().ShowModal();
                 envAudioSource.Pause();
                 if (environment.GetComponent<Environment>().moveCounter <= environment.GetComponent<Environment>().moves_gold)

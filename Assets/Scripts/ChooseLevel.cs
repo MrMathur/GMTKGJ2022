@@ -14,13 +14,17 @@ public class ChooseLevel : MonoBehaviour
     public Sprite goldMedal;
     public Color green;
     private int test;
+    [SerializeField] GameObject[] clearText;
+    [SerializeField] GameObject[] moveText;
+    [SerializeField] GameObject[] medalImages;
+    [SerializeField] GameObject[] playButtons;
 
     void Start()
     {
-        GameObject[] clearText = GameObject.FindGameObjectsWithTag("clear_level_text");
-        GameObject[] moveText = GameObject.FindGameObjectsWithTag("moves_level_text");
-        GameObject[] medalImages = GameObject.FindGameObjectsWithTag("medal_image");
-        GameObject[] playButtons = GameObject.FindGameObjectsWithTag("play_button");
+        // GameObject[] clearText = GameObject.FindGameObjectsWithTag("clear_level_text");
+        // GameObject[] moveText = GameObject.FindGameObjectsWithTag("moves_level_text");
+        // GameObject[] medalImages = GameObject.FindGameObjectsWithTag("medal_image");
+        // GameObject[] playButtons = GameObject.FindGameObjectsWithTag("play_button");
 
 
         test = 0;
