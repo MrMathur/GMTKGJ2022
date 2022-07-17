@@ -8,24 +8,33 @@ public class MarkTile : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    public TMP_Text final_text;
+    private TMP_Text final_text;
     public bool isCorrect = false;
     private GameObject hud;
+
+    [SerializeField] private GameObject defaultSkin;
+    [SerializeField] private GameObject activeSkin;
 
     void Start() {
         hud = GameObject.FindGameObjectWithTag("HUD");
     }
 
     public void triggerColorRed(bool isReset) {
-        if (!isReset) {
-            final_text.color = Color.red;
-            isCorrect = false;
-        }
+        // final_text.color = Color.red;
+
+        defaultSkin.SetActive(true);
+        activeSkin.SetActive(false);
+
+        isCorrect = false;
     }
 
     public void triggerColorGreen(bool isReset, int numMoves, int moves_gold, int moves_silver) {
         if (!isReset) {
-            final_text.color = Color.green;
+            // final_text.color = Color.green;
+
+            defaultSkin.SetActive(false);
+            activeSkin.SetActive(true);
+
             isCorrect = true;
             GameObject[] obstacles = GameObject.FindGameObjectsWithTag("generic_tag");
             var allCorrect = true;
@@ -49,7 +58,11 @@ public class MarkTile : MonoBehaviour
             }
 
         } else {
-            final_text.color = Color.red;
+            // final_text.color = Color.red;
+
+            defaultSkin.SetActive(true);
+            activeSkin.SetActive(false);
+
             isCorrect = false;
         }
     }

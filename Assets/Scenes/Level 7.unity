@@ -1186,6 +1186,38 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1611045188390539846, guid: ecac33d68d52a4abcb254be0d931d0f9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2284916706790387320, guid: ecac33d68d52a4abcb254be0d931d0f9, type: 3}
+      propertyPath: m_text
+      value: Jumping also lets you overcome gaps in the environment
+      objectReference: {fileID: 0}
+    - target: {fileID: 6182964791363944717, guid: ecac33d68d52a4abcb254be0d931d0f9, type: 3}
+      propertyPath: m_text
+      value: Trampolines can make your die
+      objectReference: {fileID: 0}
+    - target: {fileID: 6401750307832788662, guid: ecac33d68d52a4abcb254be0d931d0f9, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 320
+      objectReference: {fileID: 0}
+    - target: {fileID: 6401750307832788662, guid: ecac33d68d52a4abcb254be0d931d0f9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -484
+      objectReference: {fileID: 0}
+    - target: {fileID: 6892438597127725409, guid: ecac33d68d52a4abcb254be0d931d0f9, type: 3}
+      propertyPath: m_text
+      value: Jumping helps you skip tiles, and reduce your moves
+      objectReference: {fileID: 0}
+    - target: {fileID: 7193013312375307722, guid: ecac33d68d52a4abcb254be0d931d0f9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8080752569090987831, guid: ecac33d68d52a4abcb254be0d931d0f9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8250444888123151894, guid: ecac33d68d52a4abcb254be0d931d0f9, type: 3}
       propertyPath: m_Name
       value: HUD
@@ -1273,6 +1305,10 @@ PrefabInstance:
     - target: {fileID: 8250444888123151898, guid: ecac33d68d52a4abcb254be0d931d0f9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9185089208829468064, guid: ecac33d68d52a4abcb254be0d931d0f9, type: 3}
+      propertyPath: m_text
+      value: JUMP
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ecac33d68d52a4abcb254be0d931d0f9, type: 3}

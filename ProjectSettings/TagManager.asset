@@ -56,15 +56,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: DiceDot
-    uniqueID: 4019626449
-    locked: 0
-  - name: DiceFace
-    uniqueID: 2222721417
+  - name: Dice
+    uniqueID: 2114110707
     locked: 0
   - name: DiceCube
     uniqueID: 3669374633
     locked: 0
-  - name: Dice
-    uniqueID: 2114110707
+  - name: DiceFace
+    uniqueID: 2222721417
+    locked: 0
+  - name: DiceDot
+    uniqueID: 4019626449
     locked: 0
