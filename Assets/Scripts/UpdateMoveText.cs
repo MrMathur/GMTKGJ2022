@@ -40,12 +40,14 @@ public class UpdateMoveText : MonoBehaviour
         } else {
             moveText.SetText(environment.GetComponent<Environment>().moveCounter + " Moves");
         }
-        if(PlayerStats.Levels[SceneManager.GetActiveScene().buildIndex - 2].stars == 1) {
-            medalImage.GetComponent<Image>().sprite = bronze;
-        } else if(PlayerStats.Levels[SceneManager.GetActiveScene().buildIndex - 2].stars == 2) {
-            medalImage.GetComponent<Image>().sprite = silver;
-        } else {
-            medalImage.GetComponent<Image>().sprite = gold;
+        if (medalImage != null) {
+            if(PlayerStats.Levels[SceneManager.GetActiveScene().buildIndex - 2].stars == 1) {
+                medalImage.GetComponent<Image>().sprite = bronze;
+            } else if(PlayerStats.Levels[SceneManager.GetActiveScene().buildIndex - 2].stars == 2) {
+                medalImage.GetComponent<Image>().sprite = silver;
+            } else {
+                medalImage.GetComponent<Image>().sprite = gold;
+            }
         }
 
         if (environment.GetComponent<Environment>().moveCounter <= environment.GetComponent<Environment>().moves_gold) {
