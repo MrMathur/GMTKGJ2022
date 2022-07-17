@@ -10,6 +10,11 @@ public class MarkTile : MonoBehaviour
 
     public TMP_Text final_text;
     public bool isCorrect = false;
+    private GameObject hud;
+
+    void Start() {
+        hud = GameObject.FindGameObjectWithTag("HUD");
+    }
 
     public void triggerColorRed() {
         final_text.color = Color.red;
@@ -28,18 +33,19 @@ public class MarkTile : MonoBehaviour
         }
 
         if (allCorrect) {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-            PlayerStats.CurrentLevel +=1;
-            int stars = 1;
-            if (numMoves <= moves_gold) {
-                stars = 3;
-            } else if (numMoves <= moves_silver) {
-                stars = 2;
-            } 
-            PlayerStats.Levels[SceneManager.GetActiveScene().buildIndex - 1] = new LevelDetails(PlayerStats.CurrentLevel -1, stars, numMoves, true, true);
-            PlayerStats.Levels[SceneManager.GetActiveScene().buildIndex] = new LevelDetails(PlayerStats.CurrentLevel, 0, 0, true, false);
+            // PlayerStats.CurrentLevel +=1;
+            // int stars = 1;
+            // if (numMoves <= moves_gold) {
+            //     stars = 3;
+            // } else if (numMoves <= moves_silver) {
+            //     stars = 2;
+            // } 
+            // PlayerStats.Levels[SceneManager.GetActiveScene().buildIndex - 1] = new LevelDetails(PlayerStats.CurrentLevel -1, stars, numMoves, true, true);
+            // PlayerStats.Levels[SceneManager.GetActiveScene().buildIndex] = new LevelDetails(PlayerStats.CurrentLevel, 0, 0, true, false);
+            hud.GetComponent<NextLevelModal>().ShowModal();
         }
 
-
     }
+
+    
 }
