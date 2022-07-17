@@ -19,6 +19,10 @@ TagManager:
   - Die_Player
   - NextLevelModal
   - HUD
+  - medal_image
+  - play_button
+  - moves_level_text
+  - clear_level_text
   layers:
   - Default
   - TransparentFX

@@ -43,8 +43,8 @@ public class MarkTile : MonoBehaviour
                 } else if (numMoves <= moves_silver) {
                     stars = 2;
                 } 
-                PlayerStats.Levels[SceneManager.GetActiveScene().buildIndex - 1] = new LevelDetails(PlayerStats.CurrentLevel -1, stars, numMoves, true, true);
-                PlayerStats.Levels[SceneManager.GetActiveScene().buildIndex] = new LevelDetails(PlayerStats.CurrentLevel, 0, 0, true, false);
+                PlayerStats.Levels[SceneManager.GetActiveScene().buildIndex - 2] = new LevelDetails(PlayerStats.CurrentLevel -1, stars, numMoves, true, true);
+                PlayerStats.Levels[SceneManager.GetActiveScene().buildIndex - 1] = new LevelDetails(PlayerStats.CurrentLevel, 0, 0, true, false);
                 hud.GetComponent<NextLevelModal>().ShowModal();
             }
 

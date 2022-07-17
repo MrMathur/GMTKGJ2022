@@ -11,7 +11,7 @@ public class FirstEnv : MonoBehaviour
         if (PlayerStats.Levels == null) {
             PlayerStats.Levels = new List<LevelDetails>();
             PlayerStats.CurrentLevel = 1;
-            for (int i=0; i< SceneManager.sceneCountInBuildSettings - 1; i++){
+            for (int i=0; i< SceneManager.sceneCountInBuildSettings - 2; i++){
                 bool unlocked = false;
                 if (i==0){
                     unlocked = true;
@@ -24,11 +24,4 @@ public class FirstEnv : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.W)) {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);        
-        }
-    }
 }
